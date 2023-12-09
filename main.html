@@ -3,29 +3,58 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			
-		}
+<body>
+    <script>
+        function secondHighest(arr) {
+            //Write your code here
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
+            let n = arr.length;
+            if (n === 0 || n === 1) {
+                return -Infinity;
+            }
+			let b = true;
+			for(let k = 0;k<n-1;k++)
+				{
+					if(arr[k] != arr[k+1]){
+						b = false;
+					}
+				}
+			if(b==true){
+				return -Infinity;
 			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
 
-    <script type="text/javascript" src="./script.js">
-</script>
+            let max1 = Number.MIN_SAFE_INTEGER;
+            let index1 = 0;
+            for (let i = 0; i < n; i++) {
+                if (max1 < arr[i]) {
+                    max1 = arr[i];
+                    index1 = i;
+                }
+            }
+            let max2 = Number.MIN_SAFE_INTEGER;
+            for (let j = 0; j < n; j++) {
+                if (max2 < arr[j] && max2 != max1 && index1 != j) {
+                    max2 = arr[j];
+                }
+            }
+            return max2;
+        }
+
+        function Main() {
+            var n = prompt("Enter the number of elements");
+            var arr = [];
+            for (var i = 0; i < n; i++) {
+                arr[i] = prompt("Enter element " + (i + 1));
+            }
+            alert(secondHighest(arr));  
+        }
+        Main();
+    </script>
+
+    <script type="text/javascript" src="./script.js"></script>
 
 </body>
 
